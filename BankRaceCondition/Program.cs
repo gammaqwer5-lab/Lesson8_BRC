@@ -4,7 +4,7 @@ using BankRaceCondition.Services;
 const int workers = 10;
 const int operations = 1000;
 const decimal amount = 10;
-
+ 
 var account = new BankAccount();
 var simulator = new BankSimulator();
 
