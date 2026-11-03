@@ -26,3 +26,23 @@ await simulator.RunUnsafeAsync(
 Console.WriteLine();
 Console.WriteLine($"Фактический баланс: {account.Balance}");
 Console.WriteLine($"Разница: {expected - account.Balance}");
+
+Console.WriteLine();
+Console.WriteLine("=== WITHDRAW TEST ===");
+
+var withdrawalAccount = new BankAccount();
+
+withdrawalAccount.Deposit(1000);
+
+int successfulWithdrawals =
+    await simulator.RunWithdrawalsAsync(
+        withdrawalAccount,
+        workers: 10,
+        operationsPerWorker: 100,
+        amount: 100);
+
+Console.WriteLine(
+    $"Успешных списаний: {successfulWithdrawals}");
+
+Console.WriteLine(
+    $"Остаток: {withdrawalAccount.Balance}");
